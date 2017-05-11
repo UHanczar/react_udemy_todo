@@ -5,7 +5,7 @@ export default {
   entry: [
     'script-loader!jquery/dist/jquery.min.js',
     'script-loader!foundation-sites/dist/js/foundation.min.js',
-    path.resolve(__dirname, './app/App.jsx')
+    path.resolve(__dirname, './app/App.js')
   ],
   externals: {
     jquery: 'jQuery',
@@ -28,6 +28,10 @@ export default {
     alias: {
       jQuery: path.resolve(__dirname, 'node_modules/jquery/dist/jquery.min.js')
     },
+    modules: [
+      "node_modules",
+      path.resolve(__dirname, "app/components")
+    ],
     extensions: ['.js', '.jsx']
   },
   module: {
