@@ -11,7 +11,7 @@
     "server": "npm-run-all --parallel start watch",
     "babel": "./node_modules/.bin/babel-node --presets es2015",
     "test": "yarn run babel -- ./node_modules/karma/bin/karma start",
-    "protest": "mocha --require app/tests/helpers/env.helper.js app/tests/**/*.test.jsx --timeout 5000"
+    "protest": "mocha --require app/tests/helpers/env.helper.js app/tests/**/*.test.js --timeout 5000"
   },
   "author": "Uladzimir <u.hanczar@gmail.com>",
   "license": "MIT",
@@ -24,7 +24,7 @@
     "babel-preset-react": "^6.23.0",
     "babel-preset-stage-0": "^6.22.0",
     "babel-register": "^6.24.1",
-    "css-loader": "^0.28.0",
+    "css-loader": "^0.28.1",
     "eslint": "^3.18.0",
     "eslint-config-airbnb": "^14.1.0",
     "eslint-plugin-html": "^2.0.1",
@@ -45,10 +45,10 @@
     "node-sass": "^4.5.2",
     "npm-run-all": "^4.0.2",
     "open": "^0.0.5",
-    "react-addons-test-utils": "15.4.2",
-    "sass-loader": "^6.0.3",
+    "react-addons-test-utils": "^15.5.1",
+    "sass-loader": "^6.0.5",
     "script-loader": "^0.7.0",
-    "style-loader": "^0.16.1",
+    "style-loader": "^0.17.0",
     "webpack": "^2.3.2"
   },
   "dependencies": {
