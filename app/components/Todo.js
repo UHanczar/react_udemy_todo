@@ -1,0 +1,10 @@
+import React, { Component } from 'react';
+
+const Todo = (props) => {
+  const { id, text } = props;
+  return (
+    <div>{id}. {text}</div>
+  );
+}
+
+export default Todo;
