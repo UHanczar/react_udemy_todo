@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 import TodoList from './TodoList';
-import TodoForm from './TodoForm';
+import AddTodo from './AddTodo';
 
 class TodoApp extends Component {
   constructor(props) {
@@ -40,7 +40,7 @@ class TodoApp extends Component {
     return (
       <div>
         <TodoList todos={todos} />
-        <TodoForm onAddTodo={this.handleAddTodo} />
+        <AddTodo onAddTodo={this.handleAddTodo} />
       </div>
     );
   }
