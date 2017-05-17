@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 
+import TodoSearch from './TodoSearch';
 import TodoList from './TodoList';
 import AddTodo from './AddTodo';
 
@@ -8,6 +9,8 @@ class TodoApp extends Component {
     super(props);
 
     this.state = {
+      showCompleted: false,
+      showSearchText: '',
       todos: [
         {
           id: 1,
@@ -29,6 +32,17 @@ class TodoApp extends Component {
     };
 
     this.handleAddTodo = this.handleAddTodo.bind(this);
+    this.handleSearch = this.handleSearch.bind(this);
+  }
+
+  handleSearch(showCompleted, showSearchText) {
+    console.log(showCompleted, showSearchText);
+    this.setState(() => {
+      return {
+      showCompleted: showCompleted,
+      showSearchText: showSearchText.toLowerCase()
+      };
+    });
   }
 
   handleAddTodo(text) {
@@ -39,6 +53,7 @@ class TodoApp extends Component {
     const { todos } = this.state;
     return (
       <div>
+        <TodoSearch onSearch={this.handleSearch} />
         <TodoList todos={todos} />
         <AddTodo onAddTodo={this.handleAddTodo} />
       </div>
