@@ -4,6 +4,7 @@ import uuid from 'uuid';
 import TodoSearch from './TodoSearch';
 import TodoList from './TodoList';
 import AddTodo from './AddTodo';
+import TodoApi from './../api/TodoApi';
 
 class TodoApp extends Component {
   constructor(props) {
@@ -12,28 +13,17 @@ class TodoApp extends Component {
     this.state = {
       showCompleted: false,
       showSearchText: '',
-      todos: [
-        {
-          id: uuid(),
-          text: 'walk the dog'
-        },
-        {
-          id: uuid(),
-          text: 'clean the yard'
-        },
-        {
-          id: uuid(),
-          text: 'walk to store',
-        },
-        {
-          id: uuid(),
-          text: 'relax at evening'
-        }
-      ]
+      todos: TodoApi.getTodos()
     };
 
     this.handleAddTodo = this.handleAddTodo.bind(this);
+    this.handleToggle = this.handleToggle.bind(this);
     this.handleSearch = this.handleSearch.bind(this);
+  }
+
+  componentDidUpdate() {
+    // console.log(localStorage);
+    TodoApi.setTodos(this.state.todos);
   }
 
   handleSearch(showCompleted, showSearchText) {
@@ -48,16 +38,31 @@ class TodoApp extends Component {
 
   handleAddTodo(text) {
     console.log(`new Todo: ${text}`);
-
     this.setState(() => {
       return {
         todos: [
           ...this.state.todos,
           {
             id: uuid(),
-            text: text
+            text: text,
+            completed: false
           }
         ]
+      };
+    });
+  }
+
+  handleToggle(id) {
+    const updatedTodos = this.state.todos.map(todo => {
+      if(todo.id === id) {
+        todo.completed = !todo.completed;
+      }
+      return todo;
+    });
+
+    this.setState(() => {
+      return {
+        todos: updatedTodos
       };
     });
   }
@@ -67,7 +72,7 @@ class TodoApp extends Component {
     return (
       <div>
         <TodoSearch onSearch={this.handleSearch} />
-        <TodoList todos={todos} />
+        <TodoList todos={todos} onToggle={this.handleToggle} />
         <AddTodo onAddTodo={this.handleAddTodo} />
       </div>
     );
