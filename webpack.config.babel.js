@@ -4,8 +4,7 @@ import path from 'path';
 export default {
   entry: [
     'script-loader!jquery/dist/jquery.min.js',
-    'script-loader!foundation-sites/dist/js/foundation.min.js',
-    path.resolve(__dirname, './app/App.js')
+     path.resolve(__dirname, './app/App.js')
   ],
   externals: {
     jquery: 'jQuery',
@@ -26,7 +25,8 @@ export default {
   },
   resolve: {
     alias: {
-      jQuery: path.resolve(__dirname, 'node_modules/jquery/dist/jquery.min.js')
+      jQuery: path.resolve(__dirname, 'node_modules/jquery/dist/jquery.min.js'),
+      moment: path.resolve(__dirname, 'node_modules/moment/moment.js')
     },
     modules: [
       "node_modules",
