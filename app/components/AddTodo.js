@@ -19,7 +19,7 @@ class AddTodo extends Component {
   }
   render() {
     return (
-      <div>
+      <div className='container__footer'>
         <form onSubmit={(e) => this.handleSubmit(e)}>
           <input type='text' ref={(val) => { this.todoText = val; }} placeholder='What do you need to do?' />
           <button className='button expanded'>Add Todo</button>
