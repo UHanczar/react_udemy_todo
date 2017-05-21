@@ -13,12 +13,33 @@ const getTodos = () => {
 
   try {
     todos = JSON.parse(stringTodos);
-  } catch (e) {}
+  } catch (e) {
+
+  }
 
   return $.isArray(todos) ? todos : [];
 };
 
+const filterTodos = (todos, showCompleted, showSearchText) => {
+  let filteredTodos = todos;
+
+  // filter by showCompleted
+  filteredTodos = filteredTodos.filter((todo) => !todo.completed || showCompleted);
+
+  // filter by showSearchText
+  filteredTodos = filteredTodos.filter((todo) => {
+    const todoText = todo.text.toLowerCase();
+
+    return showSearchText.length === 0 || todoText.indexOf(showSearchText) > -1;
+  });
+  // sort todos with noncompleted first
+  filteredTodos.sort((a, b) => !a.completed && b.completed ? -1 : 1);
+
+  return filteredTodos;
+};
+
 export default {
   setTodos,
-  getTodos
+  getTodos,
+  filterTodos
 };
