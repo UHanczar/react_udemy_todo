@@ -20,7 +20,7 @@ const getTodos = () => {
   return $.isArray(todos) ? todos : [];
 };
 
-const filterTodos = (todos, showCompleted, showSearchText) => {
+export const filterTodos = (todos, showCompleted, showSearchText) => {
   let filteredTodos = todos;
 
   // filter by showCompleted
