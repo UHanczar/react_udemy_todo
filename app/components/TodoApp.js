@@ -18,7 +18,7 @@ class TodoApp extends Component {
     };
 
     this.handleAddTodo = this.handleAddTodo.bind(this);
-    this.handleToggle = this.handleToggle.bind(this);
+    // this.handleToggle = this.handleToggle.bind(this);
     this.handleSearch = this.handleSearch.bind(this);
   }
 
@@ -55,26 +55,26 @@ class TodoApp extends Component {
     });
   }
 
-  handleToggle(id) {
-    const updatedTodos = this.state.todos.map(todo => {
-      if(todo.id === id) {
-        todo.completed = !todo.completed;
-        todo.completedAt = todo.completed ? moment().unix() : undefined;
-      }
-      return todo;
-    });
-
-    this.setState(() => {
-      return {
-        todos: updatedTodos
-      };
-    });
-  }
+  // handleToggle(id) {
+  //   const updatedTodos = this.state.todos.map(todo => {
+  //     if(todo.id === id) {
+  //       todo.completed = !todo.completed;
+  //       todo.completedAt = todo.completed ? moment().unix() : undefined;
+  //     }
+  //     return todo;
+  //   });
+  //
+  //   this.setState(() => {
+  //     return {
+  //       todos: updatedTodos
+  //     };
+  //   });
+  // }
 
   render() {
     const { todos, showCompleted, showSearchText } = this.state;
     const filteredTodos = TodoApi.filterTodos(todos, showCompleted, showSearchText);
-
+    // todos={filteredTodos} onToggle={this.handleToggle} // from <TodoList />
     return (
       <div>
         <h1 className='page-title'>Todo App</h1>
@@ -82,7 +82,7 @@ class TodoApp extends Component {
           <div className='column small-centered small-11 medium-6 large-5'>
             <div className='container'>
               <TodoSearch onSearch={this.handleSearch} />
-              <TodoList todos={filteredTodos} onToggle={this.handleToggle} />
+              <TodoList />
               <AddTodo onAddTodo={this.handleAddTodo} />
             </div>
           </div>

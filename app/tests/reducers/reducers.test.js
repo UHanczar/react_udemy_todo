@@ -1,7 +1,7 @@
 import expect from 'expect';
 import df from 'deep-freeze-strict';
 
-import reducers from '../../reducers/reducers';
+import { searchTextReducer, showCompletedReducer, todosReducer } from '../../reducers/reducers';
 
 describe('Reducers', () => {
   describe('searchTextReducer', () => {
@@ -11,7 +11,7 @@ describe('Reducers', () => {
         searchText: 'dog'
       };
 
-      const res = reducers.searchTextReducer(df(''), df(action));
+      const res = searchTextReducer(df(''), df(action));
 
       expect(res).toEqual(action.searchText);
     });
@@ -23,7 +23,7 @@ describe('Reducers', () => {
         type: 'TOGGLE_SHOW_COMPLETED'
       };
 
-      const res = reducers.showCompletedReducer(df(false), df(action));
+      const res = showCompletedReducer(df(false), df(action));
 
       expect(res).toEqual(true);
     });
@@ -36,7 +36,7 @@ describe('Reducers', () => {
         text: 'run'
       };
 
-      const res = reducers.todosReducer(df([]), action);
+      const res = todosReducer(df([]), action);
 
       expect(res.length).toEqual(1);
       expect(res[0].text).toEqual(action.text);
@@ -58,7 +58,7 @@ describe('Reducers', () => {
         }
       ];
 
-      const res = reducers.todosReducer(df(todos), action);
+      const res = todosReducer(df(todos), action);
 
       expect(res[0].completed).toEqual(false);
       expect(res[0].completedAt).toEqual(undefined);

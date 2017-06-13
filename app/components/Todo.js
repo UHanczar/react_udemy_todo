@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import moment from 'moment';
 
-const Todo = (props) => {
-  const { id, text, completed, createdAt, completedAt } = props;
+import { toggleTodo } from './../actions/actions';
+
+export const Todo = (props) => {
+  const { id, text, completed, createdAt, completedAt, dispatch } = props;
   const todoClassName = completed ? 'todo todo-completed' : 'todo'
   let renderDate = () => {
     let message = 'Created ';
@@ -15,12 +18,12 @@ const Todo = (props) => {
 
     return message + moment.unix(timestamp).format('MMM Do YYYY @ h:mm a');
   };
-
+  // //props.onToggle(id); // extracted from onClick
   return (
     <div
       className={todoClassName}
       onClick={() => {
-      props.onToggle(id);
+        dispatch(toggleTodo(id))
       }}
     >
       <div>
@@ -34,4 +37,4 @@ const Todo = (props) => {
   );
 };
 
-export default Todo;
+export default connect()(Todo);
