@@ -9,16 +9,22 @@ import 'style-loader!css-loader!sass-loader!./styles/app.scss';
 
 import TodoApp from 'TodoApp';
 
-import {setSearchText, toggleShowCompleted, addTodo} from './actions/actions';
+import {toggleShowCompleted, addTodo, addTodos} from './actions/actions';
 import store from './store/configureStore';
+import TodoApi from './api/TodoApi';
 
 store.subscribe(() => {
-  console.log('New State', store.getState());
+  const state = store.getState();
+  console.log('New State', state);
+  TodoApi.setTodos(state.todos);
 });
+
+const initialTodos = TodoApi.getTodos();
+store.dispatch(addTodos(initialTodos));
 
 store.dispatch(addTodo('Clean the yard'));
 // store.dispatch(setSearchText('yard'));
-store.dispatch(toggleShowCompleted());
+// store.dispatch(toggleShowCompleted());
 
 // See from here
 ReactDOM.render(
