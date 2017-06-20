@@ -13,6 +13,8 @@ import {toggleShowCompleted, addTodo, addTodos} from './actions/actions';
 import store from './store/configureStore';
 import TodoApi from './api/TodoApi';
 
+import './../firebase/index.js';
+
 store.subscribe(() => {
   const state = store.getState();
   console.log('New State', state);
