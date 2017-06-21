@@ -63,6 +63,59 @@ firebaseRef.child('app').update({
 firebaseRef.child('user/age').remove();
 // also we can remove data by simply setting update prop to null
 firebaseRef.child('app').update({
-  
+
   version: null
+});
+
+// in case we want to fetch all database we use once method
+// firebaseRef.once('value').then((snapshot) => {
+//   console.log('Got entire database', snapshot.key, snapshot.val());
+// }, (err) => {
+//   console.log('Unable to fetch value', err);
+// });
+
+// 'on' method works on every change of database
+// note, we can use logData as callback in 'on' method
+const logData = (snapshot) => {
+  console.log('Retrieve on on method', snapshot.val());
+};
+
+firebaseRef.on('value', logData);
+
+// we can turn off that on method with two ways
+// first, we can use mathod off. Using it, we remove all listeners
+// firebaseRef.off();
+// in case we don't want remove then all, we should assing callback function
+// to variable and an pass it to off(callback) as argument
+firebaseRef.off();
+
+// ARRAYS
+// firebase deals with arrays slightly differently
+// it creates objects with unique keys
+// here we create new field in our database
+const noteRef = firebaseRef.child('notes');
+// here we declaer that we add something to newNoteRef
+const newNoteRef = noteRef.push();
+// here we adding database // also, we can insert object in push
+// const newNoteRef = noteRef.push({ text: 'walk the dog' });
+newNoteRef.set({
+  text: 'walk the dog'
+});
+// we can fetch our id-s using keys
+console.log('Todo key', newNoteRef.key);
+
+// also, we can updata, delete our array items
+// let's set new listener, which triggers only when its child updates
+// we can do it with special trigger 'child_added'
+noteRef.on('child_added', (snapshot) => {
+  console.log('Child added', snapshot.key, snapshot.val());
+});
+// also, we can can change and remove our items with 'child_changed' and
+// 'child_removed'
+noteRef.on('child_changed', (snapshot) => {
+  console.log('Child changed', snapshot.key, snapshot.val());
+});
+
+noteRef.on('child_removed', (snapshot) => {
+  console.log('Child removed', snapshot.key, snapshot.val());
 });
