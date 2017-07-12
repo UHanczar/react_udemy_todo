@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import moment from 'moment';
 
-import { toggleTodo } from './../actions/actions';
+import { startToggleTodo } from './../actions/actions';
 
 export const Todo = (props) => {
   const { id, text, completed, createdAt, completedAt, dispatch } = props;
@@ -23,7 +23,7 @@ export const Todo = (props) => {
     <div
       className={todoClassName}
       onClick={() => {
-        dispatch(toggleTodo(id))
+        dispatch(startToggleTodo(id, !completed))
       }}
     >
       <div>

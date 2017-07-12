@@ -9,11 +9,11 @@ import 'style-loader!css-loader!sass-loader!./styles/app.scss';
 
 import TodoApp from 'TodoApp';
 
-import {toggleShowCompleted, addTodo, addTodos} from './actions/actions';
+import {toggleShowCompleted, addTodo} from './actions/actions';
 import store from './store/configureStore';
 import TodoApi from './api/TodoApi';
 
-import './../firebase/index.js';
+// import './../firebase/index.js';
 
 store.subscribe(() => {
   const state = store.getState();
@@ -21,10 +21,10 @@ store.subscribe(() => {
   TodoApi.setTodos(state.todos);
 });
 
-const initialTodos = TodoApi.getTodos();
-store.dispatch(addTodos(initialTodos));
+// const initialTodos = TodoApi.getTodos();
+// store.dispatch(addTodo(initialTodos));
 
-store.dispatch(addTodo('Clean the yard'));
+// store.dispatch(addTodo('Clean the yard'));
 // store.dispatch(setSearchText('yard'));
 // store.dispatch(toggleShowCompleted());
 

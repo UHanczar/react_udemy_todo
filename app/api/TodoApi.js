@@ -8,7 +8,8 @@ const setTodos = (todos) => {
 };
 
 const getTodos = () => {
-  const stringTodos = localStorage.getItem('todos');
+  const stringTodos = localStorage.getItem('todos'
+);
   let todos = [];
 
   try {
@@ -28,7 +29,10 @@ export const filterTodos = (todos, showCompleted, showSearchText) => {
 
   // filter by showSearchText
   filteredTodos = filteredTodos.filter((todo) => {
+    console.log(todo);
     const todoText = todo.text.toLowerCase();
+    // const todoText = todo.text;
+    // console.log('todotext', todo);
 
     return showSearchText.length === 0 || todoText.indexOf(showSearchText) > -1;
   });

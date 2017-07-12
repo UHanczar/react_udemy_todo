@@ -104,7 +104,7 @@ newNoteRef.set({
 // we can fetch our id-s using keys
 console.log('Todo key', newNoteRef.key);
 
-// also, we can updata, delete our array items
+// also, we can update, delete our array items
 // let's set new listener, which triggers only when its child updates
 // we can do it with special trigger 'child_added'
 noteRef.on('child_added', (snapshot) => {

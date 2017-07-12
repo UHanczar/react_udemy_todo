@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { addTodo } from './../actions/actions';
+import * as actions from './../actions/actions';
 
 export class AddTodo extends Component {
   constructor(props) {
@@ -13,10 +13,11 @@ export class AddTodo extends Component {
   handleSubmit(e) {
     e.preventDefault();
     const newTask = this.todoText.value;
+    console.log('newTask', newTask);
     if (newTask.length > 0) {
       this.todoText.value = '';
       // this.props.onAddTodo(newTask); // from react
-      this.props.dispatch(addTodo(newTask));
+      this.props.dispatch(actions.startAddTodo(newTask));
     } else {
       this.todoText.focus();
     }

@@ -7,6 +7,7 @@ import Todo from './Todo';
 export class TodoList extends Component {
   render() {
     const { todos, showCompleted, searchText } = this.props;
+    console.log(todos, showCompleted);
     const renderTodos = () => {
       if(todos.length === 0) {
         return (
