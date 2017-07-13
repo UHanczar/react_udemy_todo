@@ -23,23 +23,24 @@ export const todosReducer = (state = [], action) => {
   switch (action.type) {
     case 'ADD_TODO':
       return [
-        ...state,
+        ...Object.keys(state).map(todo => state[todo]),
         action.todo
       ];
     case 'UPDATE_TODO':
-      return state.map(todo => {
-        if (todo.id === action.id) {
+      console.log(state);
+      return Object.keys(state).map(todo => {
+        if (state[todo].id === action.id) {
           return {
-            ...todo,
+            ...state[todo],
             ...action.updates
           }
         } else {
-          return todo;
+          return state[todo];
         }
       });
     case 'ADD_TODOS':
     return {
-      ...state,
+      ...state.todos,
       ...action.todos
     };
     default:

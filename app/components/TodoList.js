@@ -7,17 +7,21 @@ import Todo from './Todo';
 export class TodoList extends Component {
   render() {
     const { todos, showCompleted, searchText } = this.props;
-    console.log(todos, showCompleted);
+    // console.log(todos, showCompleted);
+    const changedTodos = Object.keys(todos).map(todo => todos[todo]);
+    // console.log('changedTodos', changedTodos);
     const renderTodos = () => {
-      if(todos.length === 0) {
+      let filteredTodos = filterTodos(changedTodos, showCompleted, searchText);
+      if(filteredTodos.length === 0) {
         return (
           <p className='container__message'>Nothing to do.</p>
         )
       }
       // onToggle={this.props.onToggle} // extracted from <Todo />
-      return filterTodos(todos, showCompleted, searchText).map((todo) => {
+      return filteredTodos.map((todo) => {
+        // console.log('list', todos[todo]);
         return (
-          <Todo key={todo.id} {...todo} />
+          <Todo key={todos[todo].id} {...todos[todo]} />
         );
       });
     };

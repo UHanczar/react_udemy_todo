@@ -9,17 +9,17 @@ import 'style-loader!css-loader!sass-loader!./styles/app.scss';
 
 import TodoApp from 'TodoApp';
 
-import {toggleShowCompleted, addTodo} from './actions/actions';
+import {startAddTodos} from './actions/actions';
 import store from './store/configureStore';
 import TodoApi from './api/TodoApi';
 
 // import './../firebase/index.js';
 
-store.subscribe(() => {
-  const state = store.getState();
-  console.log('New State', state);
-  TodoApi.setTodos(state.todos);
-});
+// store.subscribe(() => {
+//   const state = store.getState();
+//   console.log('New State', state);
+//   TodoApi.setTodos(state.todos);
+// });
 
 // const initialTodos = TodoApi.getTodos();
 // store.dispatch(addTodo(initialTodos));
@@ -27,6 +27,8 @@ store.subscribe(() => {
 // store.dispatch(addTodo('Clean the yard'));
 // store.dispatch(setSearchText('yard'));
 // store.dispatch(toggleShowCompleted());
+
+store.dispatch(startAddTodos());
 
 // See from here
 ReactDOM.render(
