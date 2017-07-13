@@ -41,7 +41,7 @@ export const filterTodos = (todos, showCompleted, showSearchText) => {
     return showSearchText.length === 0 || todoText.indexOf(showSearchText) > -1;
   });
   // sort todos with noncompleted first
-  // filteredTodos.sort((a, b) => !a.completed && b.completed ? -1 : 1);
+  filteredTodos.sort((a, b) => !todos[a].completed && todos[b].completed ? -1 : 1);
 
   return filteredTodos;
 };
