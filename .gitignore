@@ -2,3 +2,4 @@
 .git/
 public/bundle.js
 yarn-error.log
+config/
