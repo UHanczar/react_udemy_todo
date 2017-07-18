@@ -5,12 +5,13 @@
   "main": "index.js",
   "repository": "https://github.com/UHanczar/react_countdown_udemy.git",
   "scripts": {
-    "start": "./node_modules/.bin/babel-node server.js",
+    "start": "yarn run build && ./node_modules/.bin/babel-node server.js",
     "localserver": "babel-node server.js",
     "watch": "webpack --watch",
+    "build": "webpack",
     "server": "npm-run-all --parallel start watch",
     "babel": "./node_modules/.bin/babel-node --presets es2015",
-    "test": "yarn run babel -- ./node_modules/karma/bin/karma start",
+    "test": "set NODE_ENV=test && yarn run babel -- ./node_modules/karma/bin/karma start",
     "protest": "mocha --require mock-local-storage app/tests/helpers/env.helper.js app/tests/**/*.test.js --timeout 5000"
   },
   "author": "Uladzimir <u.hanczar@gmail.com>",

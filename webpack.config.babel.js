@@ -1,6 +1,8 @@
 import webpack from 'webpack';
 import path from 'path';
 
+process.env.NODE_ENV = process.env.NODE_ENV || 'development';
+
 export default {
   entry: [
     'script-loader!jquery/dist/jquery.min.js',
@@ -18,6 +20,11 @@ export default {
       $: 'jquery',
       jQuery: 'jquery'
     }),
+    new webpack.optimize.UglifyJsPlugin({
+      compressor: {
+        warnings: false
+      }
+    })
   ],
   output: {
     path: path.resolve(__dirname, 'public'),
@@ -43,5 +50,5 @@ export default {
       }
     ]
   },
-  devtool: 'cheap-module-eval-source-map'
+  devtool: process.env.NODE_ENV === 'production' ? undefined : 'cheap-module-eval-source-map'
 };
