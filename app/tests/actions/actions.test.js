@@ -113,7 +113,7 @@ describe('actions', () => {
     });
 
     afterEach((done) => {
-      testTodoRef.remove().then(() => done())
+      testTodoRef.remove().then(() => done());
     });
 
     it('should toggle todo and dispatch UPDATE_TODO action', (done) => {

@@ -59,6 +59,10 @@ export default {
     ],
     extensions: ['.js', '.jsx']
   },
+  devServer: {
+    // publicPath: '/public/',
+    historyApiFallback: true
+  },
   module: {
     loaders: [
       {

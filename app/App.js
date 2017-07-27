@@ -2,37 +2,31 @@ import 'babel-polyfill';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-// import {Route, Router, IndexRoute, hashHistory} from 'react-router';
+import createHashHistory from 'history/createHashHistory';
 
 import $ from 'jquery';
 import 'style-loader!css-loader!sass-loader!./styles/app.scss';
 
-import TodoApp from 'TodoApp';
-
-import {startAddTodos} from './actions/actions';
 import store from './store/configureStore';
-import TodoApi from './api/TodoApi';
+import {startAddTodos} from './actions/actions';
+import firebase from './firebase/index';
+import MainRouter from './router/index';
 
-// import './../firebase/index.js';
+const history = createHashHistory();
 
-// store.subscribe(() => {
-//   const state = store.getState();
-//   console.log('New State', state);
-//   TodoApi.setTodos(state.todos);
-// });
-
-// const initialTodos = TodoApi.getTodos();
-// store.dispatch(addTodo(initialTodos));
-
-// store.dispatch(addTodo('Clean the yard'));
-// store.dispatch(setSearchText('yard'));
-// store.dispatch(toggleShowCompleted());
+firebase.auth().onAuthStateChanged(user => {
+  if (user) {
+    history.push('/todos');
+  } else {
+    history.push('/');
+  }
+});
 
 store.dispatch(startAddTodos());
 
 // See from here
 ReactDOM.render(
   <Provider store={store}>
-    <TodoApp />
+    { MainRouter }
   </Provider>
   , document.getElementById('root'));
