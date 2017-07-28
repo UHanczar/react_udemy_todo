@@ -8,7 +8,7 @@ import $ from 'jquery';
 import 'style-loader!css-loader!sass-loader!./styles/app.scss';
 
 import store from './store/configureStore';
-import {startAddTodos} from './actions/actions';
+import { startAddTodos, login, logout } from './actions/actions';
 import firebase from './firebase/index';
 import MainRouter from './router/index';
 
@@ -16,13 +16,14 @@ const history = createHashHistory();
 
 firebase.auth().onAuthStateChanged(user => {
   if (user) {
+    store.dispatch(login(user.uid));
+    store.dispatch(startAddTodos());
     history.push('/todos');
   } else {
+    store.dispatch(logout());
     history.push('/');
   }
 });
-
-store.dispatch(startAddTodos());
 
 // See from here
 ReactDOM.render(

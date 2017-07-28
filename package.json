@@ -11,8 +11,8 @@
     "build": "webpack",
     "server": "npm-run-all --parallel start watch",
     "babel": "./node_modules/.bin/babel-node --presets es2015",
-    "test": "set NODE_ENV=test && yarn run babel -- ./node_modules/karma/bin/karma start",
-    "protest": "mocha --require mock-local-storage app/tests/helpers/env.helper.js app/tests/**/*.test.js --timeout 5000"
+    "test": "SET \"NODE_ENV=test\" && yarn run babel -- ./node_modules/karma/bin/karma start",
+    "protest": "SET \"NODE_ENV=test\" && mocha --require mock-local-storage app/tests/helpers/env.helper.js app/tests/**/*.test.js --timeout 5000"
   },
   "author": "Uladzimir <u.hanczar@gmail.com>",
   "license": "MIT",
