@@ -104,7 +104,7 @@ describe('actions', () => {
     beforeEach((done) => {
       const credential = firebase.auth.GithubAuthProvider.credential(process.env.GITHUB_ACCESS_TOKEN);
       console.log(credential);
-      firebase.auth().signInWithCredential(credential).then(user => {
+      firebase.auth().signInWithCredential(credential).then((user) => {
         uid = user.uid;
         todosRef = firebaseRef.child(`users/${uid}/todos`);
 
